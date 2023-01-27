@@ -1,0 +1,19 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": { "ecmaVersion": 6 } ,
+  "extends": ["eslint:recommended", "airbnb", "airbnb/hooks", "prettier"],
+  "rules": {
+    "react/prop-types": "warn",
+    "react/require-default-props": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "no-unsafe-optional-chaining": "warn",
+    "no-param-reassign": [
+      "error",
+      { "props": true, "ignorePropertyModificationsFor": ["state", "draft"] },
+    ]
+  }
+}
