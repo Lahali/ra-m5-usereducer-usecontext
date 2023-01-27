@@ -1,9 +1,7 @@
 import React, { useContext } from 'react'
 import { TableContext } from './store/context'
 import { Button, Icon } from '../../atoms'
-import { FlexBox } from '../../../styles'
 import { TableCell } from './styles'
-import RowsPerPage from './RowsPerPage'
 
 function TablePagination() {
   const { state, dispatch } = useContext(TableContext)
@@ -25,30 +23,27 @@ function TablePagination() {
   }
 
   return (
-    <FlexBox direction="row" justify="space-between">
-      <TableCell>
-        <Button
-          backgroundColor="transparent"
-          color="gray"
-          shadow="none"
-          onClick={handlePrev}
-        >
-          <Icon icon="arrow_back_ios" />
-        </Button>
-        <span>
-          Página {currentPage} de {totalPages}
-        </span>
-        <Button
-          backgroundColor="transparent"
-          color="gray"
-          shadow="none"
-          onClick={handleNext}
-        >
-          <Icon icon="arrow_forward_ios" />
-        </Button>
-      </TableCell>
-      <RowsPerPage />
-    </FlexBox>
+    <TableCell border="none">
+      <Button
+        backgroundColor="transparent"
+        color="gray"
+        shadow="none"
+        onClick={handlePrev}
+      >
+        <Icon icon="arrow_back_ios" />
+      </Button>
+      <span>
+        Página {currentPage} de {totalPages}
+      </span>
+      <Button
+        backgroundColor="transparent"
+        color="gray"
+        shadow="none"
+        onClick={handleNext}
+      >
+        <Icon icon="arrow_forward_ios" />
+      </Button>
+    </TableCell>
   )
 }
 

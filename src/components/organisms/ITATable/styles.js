@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const TableCell = styled.td`
-  border: 1px solid;
+  border: ${({ border }) => border || '1px solid'};
   padding: 0.5rem;
 `
 

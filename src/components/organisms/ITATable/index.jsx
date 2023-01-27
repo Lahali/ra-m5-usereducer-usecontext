@@ -1,12 +1,12 @@
 import { useEffect, useContext } from 'react'
 import { colors } from '../../../styles'
-import { Button } from '../../atoms'
+import { Button, Icon } from '../../atoms'
 import TableProvider, { TableContext } from './store/context'
 import { Actions } from './store/reducer'
 import { TableStyled, ButtonsDivStyled } from './styles'
 import TableBody from './TableBody'
+import TableFooter from './TableFooter'
 import TableHeader from './TableHeader'
-import TablePagination from './TablePagination'
 
 function Table({ columns, data, showHeader = true, loading }) {
   const { dispatch } = useContext(TableContext)
@@ -33,7 +33,7 @@ function Table({ columns, data, showHeader = true, loading }) {
           Por barrio
         </Button>
         <Button marginLeft="1rem" backgroundColor="green">
-          Descargar
+          <Icon icon="download" /> Descargar
         </Button>
       </ButtonsDivStyled>
       {loading ? (
@@ -42,7 +42,7 @@ function Table({ columns, data, showHeader = true, loading }) {
         <TableStyled>
           {showHeader && <TableHeader />}
           <TableBody />
-          <TablePagination />
+          <TableFooter />
         </TableStyled>
       )}
     </div>

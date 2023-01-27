@@ -21,8 +21,8 @@ function RowsPerPage() {
   }
 
   return (
-    <TableCell>
-      <span>Mostrar</span>
+    <TableCell border="none">
+      <span style={{ margin: '1rem' }}>Mostrar</span>
       <Select
         id="select"
         name="select"
@@ -30,7 +30,7 @@ function RowsPerPage() {
         value={pageRows}
       >
         {options.map((option) => (
-          <SelectOption>{option.label}</SelectOption>
+          <SelectOption key={option.id}>{option.label}</SelectOption>
         ))}
       </Select>
     </TableCell>
