@@ -4,6 +4,8 @@ import TablePagination from './TablePagination'
 
 function TableFooter() {
   return (
+    // Convierte el tfoot en un div, al cargar HTML dentro de un td, salta error de HTML
+    // Además te ahorras los <td /> vacios
     <tfoot>
       <tr>
         <TablePagination />

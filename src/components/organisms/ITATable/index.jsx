@@ -8,12 +8,14 @@ import TableBody from './TableBody'
 import TableFooter from './TableFooter'
 import TableHeader from './TableHeader'
 
+// Aquí utilizaria prop-types
 function Table({ columns, data, showHeader = true, loading }) {
   const { dispatch } = useContext(TableContext)
 
   useEffect(() => {
     dispatch({ type: Actions.SET_DATA, payload: data })
     dispatch({ type: Actions.SET_COLUMNS, payload: columns })
+    // Este dispatch sobra, puede ser un valor por defecto.
     dispatch({
       type: Actions.SET_PAGINATION,
       payload: {
@@ -37,6 +39,7 @@ function Table({ columns, data, showHeader = true, loading }) {
         </Button>
       </ButtonsDivStyled>
       {loading ? (
+        // Para que sea más fidedigno debería ser una tabla vacia con spinners
         <p>estoy cargando</p>
       ) : (
         <TableStyled>
