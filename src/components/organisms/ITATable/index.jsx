@@ -3,7 +3,7 @@ import { colors } from '../../../styles'
 import { Button, Icon } from '../../atoms'
 import TableProvider, { TableContext } from './store/context'
 import { Actions } from './store/reducer'
-import { TableStyled, ButtonsDivStyled } from './styles'
+import { TableStyled, ButtonsDivStyled, TableCell, Loader } from './styles'
 import TableBody from './TableBody'
 import TableFooter from './TableFooter'
 import TableHeader from './TableHeader'
@@ -39,8 +39,16 @@ function Table({ columns, data, showHeader = true, loading }) {
         </Button>
       </ButtonsDivStyled>
       {loading ? (
-        // Para que sea más fidedigno debería ser una tabla vacia con spinners
-        <p>estoy cargando</p>
+        <TableStyled>
+          <TableHeader />
+          <tbody>
+            <tr>
+              <TableCell>
+                <Loader />
+              </TableCell>
+            </tr>
+          </tbody>
+        </TableStyled>
       ) : (
         <TableStyled>
           {showHeader && <TableHeader />}
