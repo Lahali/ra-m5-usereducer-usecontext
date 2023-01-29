@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { useEffect, useContext } from 'react'
 import { colors } from '../../../styles'
 import { Button, Icon } from '../../atoms'
@@ -58,6 +59,13 @@ function Table({ columns, data, showHeader = true, loading }) {
       )}
     </div>
   )
+}
+
+Table.propTypes = {
+  columns: PropTypes.string,
+  data: PropTypes.string,
+  showHeader: PropTypes.bool,
+  loading: PropTypes.bool,
 }
 
 function ITATable(props) {
