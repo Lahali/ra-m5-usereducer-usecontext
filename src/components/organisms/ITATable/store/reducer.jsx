@@ -40,6 +40,11 @@ export const tableReducer = (state = initialState, action) => {
         draft.pagination.pageRows = action.payload
       })
 
+    case Actions.SET_PAGINATION:
+      return createNextState(state, (draft) => {
+        draft.pagination = action.payload
+      })
+
     default:
       return state
   }

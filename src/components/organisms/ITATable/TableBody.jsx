@@ -4,14 +4,15 @@ import { TableCell } from './styles'
 
 function TableBody() {
   const { state } = useContext(TableContext)
-  const { data, columns } = state
-  const { pageRows } = state.pagination
+  const { data, columns, pagination } = state
+  const { pageRows, currentPage } = pagination
 
-  console.group('max', pageRows)
+  const start = (currentPage - 1) * pageRows
+  const end = start + pageRows
 
   return (
     <tbody>
-      {data.slice(0, pageRows).map((d) => (
+      {data.slice(start, end).map((d) => (
         <tr key={d.id}>
           {columns
             .filter((col) => !col.isHidden)

@@ -9,21 +9,13 @@ import TableBody from './TableBody'
 import TableFooter from './TableFooter'
 import TableHeader from './TableHeader'
 
-// Aquí utilizaria prop-types
 function Table({ columns, data, showHeader = true, loading }) {
   const { dispatch } = useContext(TableContext)
 
+  console.log('eee', data)
   useEffect(() => {
     dispatch({ type: Actions.SET_DATA, payload: data })
     dispatch({ type: Actions.SET_COLUMNS, payload: columns })
-    // Este dispatch sobra, puede ser un valor por defecto.
-    dispatch({
-      type: Actions.SET_PAGINATION,
-      payload: {
-        currentPage: 1,
-        pageRows: 10,
-      },
-    })
   }, [data, columns, dispatch])
 
   return (
@@ -51,19 +43,39 @@ function Table({ columns, data, showHeader = true, loading }) {
           </tbody>
         </TableStyled>
       ) : (
-        <TableStyled>
-          {showHeader && <TableHeader />}
-          <TableBody />
+        <>
+          <TableStyled>
+            {showHeader && <TableHeader />}
+            <TableBody />
+          </TableStyled>
           <TableFooter />
-        </TableStyled>
+        </>
       )}
     </div>
   )
 }
 
 Table.propTypes = {
-  columns: PropTypes.string,
-  data: PropTypes.string,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      label: PropTypes.string,
+      cell: PropTypes.func,
+    }),
+  ),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      title: PropTypes.string,
+      price: PropTypes.number,
+      image: PropTypes.string,
+      city: PropTypes.string,
+      createdAt: PropTypes.string,
+      published: PropTypes.bool,
+      updatedAt: PropTypes.string,
+      type: PropTypes.string,
+    }),
+  ),
   showHeader: PropTypes.bool,
   loading: PropTypes.bool,
 }
