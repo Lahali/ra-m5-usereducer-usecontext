@@ -21,7 +21,7 @@ function RowsPerPage() {
   }
 
   return (
-    <TableCell border="none">
+    <div style={{ padding: '1rem' }}>
       <span style={{ margin: '1rem' }}>Mostrar</span>
       <Select
         id="select"
@@ -33,7 +33,7 @@ function RowsPerPage() {
           <SelectOption key={option.id}>{option.label}</SelectOption>
         ))}
       </Select>
-    </TableCell>
+    </div>
   )
 }
 

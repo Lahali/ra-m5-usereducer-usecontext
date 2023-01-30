@@ -16,7 +16,6 @@ function TablePagination() {
     }
   }
 
-  // Lo tienes qu revisar, actualmente no funciona
   const handleNext = () => {
     if (currentPage < totalPages) {
       dispatch({
@@ -29,7 +28,7 @@ function TablePagination() {
   console.log(totalPages)
 
   return (
-    <TableCell border="none">
+    <div>
       <Button
         backgroundColor="transparent"
         color="gray"
@@ -49,7 +48,7 @@ function TablePagination() {
       >
         <Icon icon="arrow_forward_ios" />
       </Button>
-    </TableCell>
+    </div>
   )
 }
 
