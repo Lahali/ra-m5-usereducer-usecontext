@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { TableContext } from './store/context'
 import { Button, Icon } from '../../atoms'
-import { TableCell } from './styles'
 
 function TablePagination() {
   const { state, dispatch } = useContext(TableContext)
@@ -25,14 +24,13 @@ function TablePagination() {
     }
   }
 
-  console.log(totalPages)
-
   return (
     <div>
       <Button
         backgroundColor="transparent"
         color="gray"
         shadow="none"
+        visibility={currentPage === 1 ? 'hidden' : 'visible'}
         onClick={handlePrev}
       >
         <Icon icon="arrow_back_ios" />
@@ -44,6 +42,7 @@ function TablePagination() {
         backgroundColor="transparent"
         color="gray"
         shadow="none"
+        visibility={currentPage === totalPages ? 'hidden' : 'visible'}
         onClick={handleNext}
       >
         <Icon icon="arrow_forward_ios" />

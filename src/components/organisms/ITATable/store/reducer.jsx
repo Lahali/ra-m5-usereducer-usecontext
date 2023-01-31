@@ -7,6 +7,8 @@ export const initialState = {
     currentPage: 1,
     pageRows: 10,
   },
+  sortedBy: null,
+  sortDirection: false,
 }
 
 export const Actions = {
@@ -15,6 +17,8 @@ export const Actions = {
   SET_CURRENT_PAGE: 'SET_CURRENT_PAGE',
   SET_PAGE_ROWS: 'SET_PAGE_ROWS',
   SET_PAGINATION: 'SET_PAGINATION',
+  SET_SORTED_BY: 'SET_SORTED_BY',
+  SET_TABLE_SORTED: 'SET_TABLE_SORTED',
 }
 
 // eslint-disable-next-line default-param-last
@@ -44,6 +48,34 @@ export const tableReducer = (state = initialState, action) => {
       return createNextState(state, (draft) => {
         draft.pagination = action.payload
       })
+
+    case Actions.SET_SORTED_BY:
+      return createNextState(state, (draft) => {
+        draft.sortedBy = action.payload
+      })
+
+    case Actions.SET_TABLE_SORTED: {
+      const { data } = state
+      const { sortedBy, columnId, sortDirection } = action.payload
+
+      const dataArray = Object.values(data)
+
+      const sortedData = dataArray.sort((a, b) => {
+        if (sortDirection === true) {
+          return a[sortedBy] > b[sortedBy] ? 1 : -1
+        }
+        if (sortDirection === false) {
+          return a[sortedBy] < b[sortedBy] ? 1 : -1
+        }
+        return 0
+      })
+
+      return createNextState(state, (draft) => {
+        draft.data = sortedData
+        draft.sortedBy = columnId
+        draft.sortDirection = sortDirection
+      })
+    }
 
     default:
       return state

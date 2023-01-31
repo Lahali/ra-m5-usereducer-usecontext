@@ -13,6 +13,7 @@ const ButtonStyled = styled.button`
   padding: ${spacing.xs} ${spacing.base};
   box-shadow: ${({ shadow }) => shadow || colors.shadow.base};
   margin-left: ${({ marginLeft }) => marginLeft || '0'};
+  visibility: ${({ visibility }) => visibility || 'visible'};
 
   &:hover {
     cursor: pointer;

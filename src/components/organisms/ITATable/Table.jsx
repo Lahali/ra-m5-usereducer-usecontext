@@ -9,21 +9,34 @@ import TableBody from './TableBody'
 import TableFooter from './TableFooter'
 import TableHeader from './TableHeader'
 import { TableContext } from './store/context'
-import { CSVLink } from 'react-csv'
 
 function Table({ columns, data, showHeader = true, loading }) {
-  const { dispatch } = useContext(TableContext)
+  const { dispatch, state } = useContext(TableContext)
+  const { sortedBy } = state
 
   useEffect(() => {
     dispatch({ type: Actions.SET_DATA, payload: data })
     dispatch({ type: Actions.SET_COLUMNS, payload: columns })
   }, [data, columns, dispatch])
 
+  const handleSort = (column) => {
+    dispatch({
+      type: 'SET_TABLE_SORTED',
+      payload: {
+        columnId: column.id,
+        sortedBy,
+      },
+    })
+  }
+
   return (
     <div>
-      <CSVLink data={data}>holis</CSVLink>
       <ButtonsDivStyled>
-        <Button backgroundColor={colors.blue} marginLeft="1rem">
+        <Button
+          backgroundColor={colors.blue}
+          marginLeft="1rem"
+          onClick={handleSort}
+        >
           Viviendas
         </Button>
         <Button backgroundColor="white" color={colors.shadow} marginLeft="1rem">
