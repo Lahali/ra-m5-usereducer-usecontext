@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { Select, SelectOption } from '../../atoms'
 import { TableContext } from './store/context'
-import { TableCell } from './styles'
 
 const options = [
   { id: 1, value: 10, label: 10 },

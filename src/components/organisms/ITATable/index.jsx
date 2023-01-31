@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types'
 import { useEffect, useContext } from 'react'
+import { CSVLink } from 'react-csv'
 import { colors } from '../../../styles'
-import { Button, Icon } from '../../atoms'
+import { Button } from '../../atoms'
+import DownloadCsv from './helpers/DownloadCsv'
 import TableProvider, { TableContext } from './store/context'
 import { Actions } from './store/reducer'
 import { TableStyled, ButtonsDivStyled, TableCell, Loader } from './styles'
@@ -12,7 +14,6 @@ import TableHeader from './TableHeader'
 function Table({ columns, data, showHeader = true, loading }) {
   const { dispatch } = useContext(TableContext)
 
-  console.log('eee', data)
   useEffect(() => {
     dispatch({ type: Actions.SET_DATA, payload: data })
     dispatch({ type: Actions.SET_COLUMNS, payload: columns })
@@ -20,6 +21,7 @@ function Table({ columns, data, showHeader = true, loading }) {
 
   return (
     <div>
+      <CSVLink data={data}>holis</CSVLink>
       <ButtonsDivStyled>
         <Button backgroundColor={colors.blue} marginLeft="1rem">
           Viviendas
@@ -27,9 +29,7 @@ function Table({ columns, data, showHeader = true, loading }) {
         <Button backgroundColor="white" color={colors.shadow} marginLeft="1rem">
           Por barrio
         </Button>
-        <Button marginLeft="1rem" backgroundColor="green">
-          <Icon icon="download" /> Descargar
-        </Button>
+        <DownloadCsv data={data} />
       </ButtonsDivStyled>
       {loading ? (
         <TableStyled>
